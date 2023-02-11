@@ -12,6 +12,9 @@ autoinstall:
   packages:
     - qemu-guest-agent
     - sudo
+  late-commands:
+    - curtin in-target --target=/target -- systemctl start qemu-guest-agent
+    - curtin in-target --target=/target -- systemctl enable qemu-guest-agent
   storage:
     layout:
       name: direct
@@ -26,12 +29,7 @@ autoinstall:
         lock-passwd: false
         sudo: ALL=(ALL) NOPASSWD:ALL
         shell: /bin/bash
-        # passwd: "$6$exDY1mhS4KUYCE/2$zmn9ToZwTKLhCw.b4/b.ZRTIZM30JZ4QrOQ2aOXJ8yk96xpcCof0kxKwuX1kqLG/ygbJ1f8wxED22bTL4F46P0" # ubuntu
+        passwd: "" # ubuntu
         ssh_authorized_keys:
-          - ssh-rsa AAA3NzaC1yc2EAAAADAQABAAABAQChA3Br0rVLLfp/McUh86QRzq7Fg3q5ijx59//2sEBrfU+KsKvOECiIVD+0iIjp2vLo5DG7B4mJS9Ghu9IsaI1Z9mBZExxgJbbPdWNo9JwwL5zaLWafUVr9rzN8RL02u/5ViqhIs8Bw0hd6SpqVCgTLA+1kqM/YEJ/SuWaTPBPJKmE6/PWinCdmwz+hULmhWzMpWlnr7zTzczQYSt71F12mBybbrVNEAbRwqODQ9gvZL6IALWN5zlcAc2zaahKjc56qPG5IH7JY8j0VIjv9MMTKcTKw0Fk4M4ASCyaXWjEXCQbM3vBe1biJdAdMBBCB+ocV6mM0OKG2XN8vEkpwoIYR
-      - name: ubuntu
-        groups: [adm, sudo]
-        lock-passwd: false
-        sudo: ALL=(ALL) NOPASSWD:ALL
-        shell: /bin/bash
-        passwd: "$6$exDY1mhS4KUYCE/2$zmn9ToZwTKLhCw.b4/b.ZRTIZM30JZ4QrOQ2aOXJ8yk96xpcCof0kxKwuX1kqLG/ygbJ1f8wxED22bTL4F46P0" # ubuntu
+          - ssh-rsa ...  
+

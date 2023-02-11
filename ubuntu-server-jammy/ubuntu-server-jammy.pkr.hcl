@@ -3,18 +3,18 @@
 # Variable Definitions
 variable "proxmox_api_url" {
     type = string
-    default = env("PROXMOX_API_URL")
+    #default = env("PROXMOX_API_URL")
 }
 
 variable "proxmox_api_token_id" {
     type = string
-    default = env("PROXMOX_API_TOKEN_ID")
+    #default = env("PROXMOX_API_TOKEN_ID")
 }
 
 variable "proxmox_api_token_secret" {
     type = string
     sensitive = true
-    default = env("PROXMOX_API_TOKEN_SECRET")
+    #default = env("PROXMOX_API_TOKEN_SECRET")
 }
 
 # Resource Definiation for the VM Template
@@ -28,7 +28,7 @@ source "proxmox" "ubuntu-server-jammy" {
     
     # VM General Settings
     node = "pve"
-    vm_id = "999"
+    vm_id = "117"
     vm_name = "ubuntu-server-jammy"
     template_description = "Ubuntu Server jammy Image"
 
@@ -56,7 +56,7 @@ source "proxmox" "ubuntu-server-jammy" {
     }
 
     # VM CPU Settings
-    cores = "1"
+    cores = "2"
     
     # VM Memory Settings
     memory = "2048" 
@@ -86,20 +86,20 @@ source "proxmox" "ubuntu-server-jammy" {
     # PACKER Autoinstall Settings
     http_directory = "http" 
     # (Optional) Bind IP Address and Port
-    # http_bind_address = "0.0.0.0"
+    #http_bind_address = "0.0.0.0"
     http_port_min = 8802
     http_port_max = 8802
-
-    ssh_username = "ubuntu"
+    
+    ssh_username = "alexandr"
 
     # (Option 1) Add your Password here
-    ssh_password = "ubuntu"
+    # ssh_password = ""
     # - or -
     # (Option 2) Add your Private SSH KEY file here
     # ssh_private_key_file = "~/.ssh/id_rsa"
 
     # Raise the timeout, when installation takes longer
-    ssh_timeout = "20m"
+    ssh_timeout = "30m"
 }
 
 # Build Definition to create the VM Template
